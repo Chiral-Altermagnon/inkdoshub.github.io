@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#121410">
+<title>InkOS</title>
+<meta name="description" content="InkOS, a área de trabalho no navegador ao lado do InkSoC.">
+<link rel="icon" type="image/png" href="inkos.png">
+<link rel="apple-touch-icon" href="inkos.png">
+<style>
+  :root {
+    --ink: #121410;
+    --panel: #1b1f1a;
+    --paper: #f3ecdf;
+    --muted: #a39b8c;
+    --ember: #e25b2a;
+    --line: #2a3028;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    min-height: 100dvh;
+    background:
+      radial-gradient(1200px 500px at 10% -10%, #243028 0%, transparent 55%),
+      var(--ink);
+    color: var(--paper);
+    font: 15px/1.45 "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    display: flex;
+    flex-direction: column;
+  }
+  button, a { font: inherit; color: inherit; }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 44px;
+    padding: 0 14px;
+    background: #161a16;
+    border-bottom: 1px solid var(--line);
+  }
+  .bar strong { font-weight: 600; letter-spacing: .02em; }
+  .bar span { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .desk {
+    flex: 1;
+    position: relative;
+    padding: 18px 14px 22px;
+  }
+  .icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 6px;
+    align-content: flex-start;
+  }
+  .icons button {
+    width: 92px;
+    padding: 8px 4px 6px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+  .icons button:hover, .icons button:focus-visible { background: rgba(243, 236, 223, .08); }
+  .icons img { width: 64px; height: 64px; display: block; margin: 0 auto 6px; }
+  .icons small { display: block; text-align: center; font-size: 13px; }
+  .win {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 16px;
+    max-width: 440px;
+    margin: 0 auto;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    overflow: hidden;
+  }
+  .win[hidden] { display: none; }
+  .win header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #232922;
+    border-bottom: 1px solid var(--line);
+  }
+  .win header b { font-weight: 600; font-size: 14px; }
+  .win header button {
+    margin-left: auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 0;
+    background: transparent;
+    color: var(--paper);
+    cursor: pointer;
+  }
+  .win header button:hover { background: var(--ember); color: #1a0d08; }
+  .win .body { padding: 16px 16px 18px; }
+  .win h1 { margin: 0 0 8px; font-size: 28px; font-weight: 600; letter-spacing: -.02em; }
+  .win p { margin: 0 0 10px; color: var(--paper); }
+  .win p.dim { color: var(--muted); }
+  .win a.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+  }
+  .win a.row:hover { color: var(--ember); }
+  .win a.row em { font-style: normal; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <strong>InkOS</strong>
+  <span id="clock"></span>
+</header>
+<main class="desk">
+  <nav class="icons" aria-label="Área de trabalho">
+    <button type="button" data-win="sobre"><img src="inkos.png" alt=""><small>InkOS</small></button>
+    <button type="button" data-win="codigo"><img src="inkos.png" alt=""><small>Código</small></button>
+    <button type="button" data-win="motor"><img src="inkos.png" alt=""><small>InkSoC</small></button>
+  </nav>
+
+  <section class="win" id="win-sobre" hidden>
+    <header><b>InkOS</b><button type="button" data-close aria-label="Fechar">×</button></header>
+    <div class="body">
+      <h1>InkOS</h1>
+      <p>Área de trabalho do InkDOS Hub, publicada neste repositório.</p>
+      <p class="dim">O motor que executa programas x86 continua no InkSoC. Esta página é o atalho da área de trabalho, no mesmo endereço do Hub.</p>
+      <a class="row" href="https://inkdoshub.github.io/">Abrir o Hub<em>inkdoshub.github.io</em></a>
+    </div>
+  </section>
+
+  <section class="win" id="win-codigo" hidden>
+    <header><b>Código</b><button type="button" data-close aria-label="Fechar">×</button></header>
+    <div class="body">
+      <h1>Repositório</h1>
+      <p>O CI roda verificação de tipos, testes, lint e o build de produção a cada push na main.</p>
+      <a class="row" href="https://github.com/InkDOSHub/InkOS">InkDOSHub/InkOS<em>fonte</em></a>
+      <a class="row" href="https://github.com/InkDOSHub/InkOS/actions">Actions<em>CI</em></a>
+    </div>
+  </section>
+
+  <section class="win" id="win-motor" hidden>
+    <header><b>InkSoC</b><button type="button" data-close aria-label="Fechar">×</button></header>
+    <div class="body">
+      <h1>Motor</h1>
+      <p>InkSoC é o motor Wasm do Hub. O repositório do motor não é este.</p>
+      <a class="row" href="https://inkdoshub.github.io/InkSoC/">Abrir InkSoC<em>github.io/InkSoC</em></a>
+      <a class="row" href="https://github.com/InkDOSHub/InkSoC">Código do motor<em>InkDOSHub/InkSoC</em></a>
+    </div>
+  </section>
+</main>
+<script>
+  var clock = document.getElementById("clock");
+  function tick() {
+    clock.textContent = new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  }
+  tick();
+  setInterval(tick, 15000);
+  document.querySelectorAll("[data-win]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".win").forEach(function (w) { w.hidden = true; });
+      document.getElementById("win-" + btn.getAttribute("data-win")).hidden = false;
+    });
+  });
+  document.querySelectorAll("[data-close]").forEach(function (btn) {
+    btn.addEventListener("click", function () { btn.closest(".win").hidden = true; });
+  });
+  document.getElementById("win-sobre").hidden = false;
+</script>
+</body>
+</html>
