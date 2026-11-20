@@ -1,6 +1,10 @@
-<!doctype html>
-<meta charset="utf-8">
-<title>InkSoC</title>
-<meta http-equiv="refresh" content="0; url=/InkSoC/">
-<script>location.replace('/InkSoC/' + location.search + location.hash);</script>
-<a href="/InkSoC/">InkSoC</a>
+<!doctype html><meta charset="utf-8"><title>InkSoC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- InkSoC is the engine; its window is InkOS's. From the Hub this opens InkOS with
+     CMD/EXE (cmd.exe; an .exe from the InkOS Finder runs in a window of its own).
+     Inside a frame (InkOS itself, or an old link) it goes straight to the engine page. -->
+<script>
+  if (window.top === window.self) location.replace("https://inkos-5k7.pages.dev/?open=cmdexe");
+  else location.replace("/InkSoC/" + location.search + location.hash);
+</script>
+<a href="https://inkos-5k7.pages.dev/?open=cmdexe">InkSoC in InkOS</a>
